@@ -47,12 +47,12 @@ RUN cd /opt/work \
     && ./aws/install \
     && rm -rf /opt/work
 
+# Set environment variables
+ENV PATH "/opt/tools:$PATH"
+
 # Install helm plugins
 RUN helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRET_VERSION} \
     && helm plugin install https://github.com/databus23/helm-diff --version ${HELM_DIFF_VERSION}
-
-# Set environment variables
-ENV PATH "/opt/tools:$PATH"
 
 # Set working directory
 WORKDIR /opt/tools
